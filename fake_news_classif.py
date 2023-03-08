@@ -81,7 +81,6 @@ pac = PassiveAggressiveClassifier(max_iter=50)
 pac.fit(X_train, y_train)
 pred = pac.predict(X_test)
 score = accuracy_score(y_test, pred)
-plot_confusion_matrix(score, classes=['FAKE Data', 'REAL Data'])
 
 classifier = MultinomialNB(alpha=0.1)
 previous_score = 0
@@ -96,3 +95,5 @@ for alpha in np.arange(0,1,0.1):
     
 feature_names = cv.get_feature_names()
 classifier.coef_[0]
+
+final_pred = (cv.get_feature_names(), classifier.coef_[0])[:10]
